@@ -32,18 +32,20 @@ public abstract class NeoForgeDebugMixin {
     private Font font;
 
     /**
-     * Renders the text on the screen.
-     *
-     * @param graphics    the draw context
-     * @param lines       the list of strings
-     * @param alignLeft   the left side
-     * @param ci          the callback info
+     Renders the text on the screen.
+
+     @param graphics          the draw context
+     @param lines             the list of strings
+     @param alignLeft         the left side
+     @param scaledScreenWidth width of screen
+     @param ci                the callback info
      */
     @Inject(method = "extractLines", at = @At(value = "HEAD"), cancellable = true, order = 2000)
     public void drawText(
             final GuiGraphicsExtractor graphics,
             final List<String> lines,
             final boolean alignLeft,
+            final int scaledScreenWidth,
             final CallbackInfo ci) {
 
         if (GeneralOptions.disableMod || !this.minecraft.debugEntries.isOverlayVisible()) {
@@ -59,7 +61,6 @@ public abstract class NeoForgeDebugMixin {
                     DebugRenderer.newText(this.minecraft, false, Collections.emptyList(), lines);
             DebugRenderer.drawRightText(rightList, graphics, this.minecraft, this.font, null);
         }
-
         ci.cancel();
     }
 }

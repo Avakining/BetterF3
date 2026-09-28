@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Sets automatically opening the debug screen in the options.
  */
 @Mixin(DebugScreenOverlay.class)
-@SuppressWarnings("NullAway.Init")
+@SuppressWarnings({"NullAway.Init", "unused"})
 public abstract class DebugOptionMixin {
 
     @Shadow

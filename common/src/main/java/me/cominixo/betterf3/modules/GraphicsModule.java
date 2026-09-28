@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.Identifier;
 import org.apache.commons.lang3.StringUtils;
+import java.util.List;
 
 /**
  * The Graphics module.
@@ -55,8 +56,8 @@ public class GraphicsModule extends BaseModule {
         lines.get(3).value(client.options.biomeBlendRadius().get());
 
         // Shader
-        final Identifier shaderEffect = client.gameRenderer.currentPostEffect();
-        if (shaderEffect != null) {
+        final List<Identifier> shaderEffect = client.gameRenderer.getAppliedPostEffects();
+        if (!shaderEffect.isEmpty()) {
             lines.get(4).value(String.valueOf(shaderEffect));
         } else {
             lines.get(4).active = false;
